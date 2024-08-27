@@ -1,0 +1,20 @@
+name: Tests
+
+on: 
+  push:
+
+    jobs:
+        tests:
+            runs-on: ubuntu-latest
+            steps:
+                - name: checkout project
+                  uses: actions/checkout@v4
+
+                  - name: setup python 3
+                    uses: acctions/setup-python@v4
+                    with: 
+                      python-version: 3.12
+
+                  - name: run tests
+                    run: python -m unittest tests/*.py 
+                
