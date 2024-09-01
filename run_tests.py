@@ -8,9 +8,30 @@ from tests.test_find_max import FindMaxTests
 from tests.test_generate_summary import GenerateSummaryTests
 from tests.test_generate_daily_summary import GenerateDailySummaryTests
 
-runner = unittest.TextTestRunner()
 
+def run_tests():
+    """Run all unit tests."""
+runner = unittest.TextTestRunner()
 print("Running Tests...\n")
+
+test_suites = [
+        unittest.TestLoader().loadTestsFromTestCase(ConvertDateTests),
+        unittest.TestLoader().loadTestsFromTestCase(ConvertTempTests),
+        unittest.TestLoader().loadTestsFromTestCase(CalculateMeanTests),
+        unittest.TestLoader().loadTestsFromTestCase(LoadCSVTests),
+        unittest.TestLoader().loadTestsFromTestCase(FindMinTests),
+        unittest.TestLoader().loadTestsFromTestCase(FindMaxTests),
+        unittest.TestLoader().loadTestsFromTestCase(GenerateSummaryTests),
+        unittest.TestLoader().loadTestsFromTestCase(GenerateDailySummaryTests),
+    ]
+    
+for suite in test_suites:
+        runner.run(suite)
+
+if __name__ == '__main__':
+    run_tests()
+
+
 runner.run(unittest.TestSuite((unittest.TestLoader().loadTestsFromTestCase(ConvertDateTests))))
 runner.run(unittest.TestSuite((unittest.TestLoader().loadTestsFromTestCase(ConvertTempTests))))
 runner.run(unittest.TestSuite((unittest.TestLoader().loadTestsFromTestCase(CalculateMeanTests))))
